@@ -11,6 +11,14 @@
 ]]
 
 --[[
+    Visible branding in this build is customized for 🍌 BANANIHUB 🍌.
+    Original upstream attribution and license notices are intentionally preserved.
+    Do not remove those notices when redistributing this file.
+]]
+
+
+
+--[[
     BananiUI
     A modified distribution based on BananiUI by Sirius.
 
@@ -129,8 +137,8 @@ local function secureNotify(wType, title, content)
 	if secureWarnings[wType] then return end
 	secureWarnings[wType] = true
 	task.spawn(function()
-		while not RayfieldLibrary or not RayfieldLibrary.Notify do task.wait(0.5) end
-		RayfieldLibrary:Notify({
+		while not BananiUI or not BananiUI.Notify do task.wait(0.5) end
+		BananiUI:Notify({
 			Title = title,
 			Content = content,
 			Duration = 8,
@@ -139,8 +147,8 @@ local function secureNotify(wType, title, content)
 end
 local InterfaceBuild = 'UU2NX'
 local Release = "Build 1.749"
-local RayfieldFolder = "BananiUI"
-local ConfigurationFolder = RayfieldFolder.."/Configurations"
+local BananiUIFolder = "BananiUI"
+local BananiConfigurationFolder = BananiUIFolder.."/Configurations"
 local ConfigurationExtension = ".rfld"
 local settingsTable = {
 	General = {
@@ -218,9 +226,9 @@ local function loadSettings()
 	local file = nil
 
 	local success, result =	pcall(function()
-		if callSafely(isfolder, RayfieldFolder) then
-			if callSafely(isfile, RayfieldFolder..'/settings'..ConfigurationExtension) then
-				file = callSafely(readfile, RayfieldFolder..'/settings'..ConfigurationExtension)
+		if callSafely(isfolder, BananiUIFolder) then
+			if callSafely(isfile, BananiUIFolder..'/settings'..ConfigurationExtension) then
+				file = callSafely(readfile, BananiUIFolder..'/settings'..ConfigurationExtension)
 			end
 		end
 
@@ -336,49 +344,49 @@ local function getCurrentGameName()
     return fallback
 end
 
-local RayfieldLibrary = {
+local BananiUI = {
 	Flags = {},
 	Theme = {
 		Default = {
-			TextColor = Color3.fromRGB(240, 240, 240),
+			TextColor = Color3.fromRGB(245, 245, 245),
 
-			Background = Color3.fromRGB(25, 25, 25),
-			Topbar = Color3.fromRGB(34, 34, 34),
-			Shadow = Color3.fromRGB(20, 20, 20),
+			Background = Color3.fromRGB(8, 8, 8),
+			Topbar = Color3.fromRGB(14, 14, 14),
+			Shadow = Color3.fromRGB(0, 0, 0),
 
-			NotificationBackground = Color3.fromRGB(20, 20, 20),
-			NotificationActionsBackground = Color3.fromRGB(230, 230, 230),
+			NotificationBackground = Color3.fromRGB(12, 12, 12),
+			NotificationActionsBackground = Color3.fromRGB(235, 235, 235),
 
-			TabBackground = Color3.fromRGB(80, 80, 80),
-			TabStroke = Color3.fromRGB(85, 85, 85),
-			TabBackgroundSelected = Color3.fromRGB(210, 210, 210),
-			TabTextColor = Color3.fromRGB(240, 240, 240),
-			SelectedTabTextColor = Color3.fromRGB(50, 50, 50),
+			TabBackground = Color3.fromRGB(20, 20, 20),
+			TabStroke = Color3.fromRGB(42, 42, 42),
+			TabBackgroundSelected = Color3.fromRGB(245, 245, 245),
+			TabTextColor = Color3.fromRGB(215, 215, 215),
+			SelectedTabTextColor = Color3.fromRGB(10, 10, 10),
 
-			ElementBackground = Color3.fromRGB(35, 35, 35),
-			ElementBackgroundHover = Color3.fromRGB(40, 40, 40),
-			SecondaryElementBackground = Color3.fromRGB(25, 25, 25),
-			ElementStroke = Color3.fromRGB(50, 50, 50),
-			SecondaryElementStroke = Color3.fromRGB(40, 40, 40),
+			ElementBackground = Color3.fromRGB(16, 16, 16),
+			ElementBackgroundHover = Color3.fromRGB(24, 24, 24),
+			SecondaryElementBackground = Color3.fromRGB(12, 12, 12),
+			ElementStroke = Color3.fromRGB(40, 40, 40),
+			SecondaryElementStroke = Color3.fromRGB(30, 30, 30),
 
-			SliderBackground = Color3.fromRGB(50, 138, 220),
-			SliderProgress = Color3.fromRGB(50, 138, 220),
-			SliderStroke = Color3.fromRGB(58, 163, 255),
+			SliderBackground = Color3.fromRGB(45, 45, 45),
+			SliderProgress = Color3.fromRGB(230, 230, 230),
+			SliderStroke = Color3.fromRGB(255, 255, 255),
 
-			ToggleBackground = Color3.fromRGB(30, 30, 30),
-			ToggleEnabled = Color3.fromRGB(0, 146, 214),
-			ToggleDisabled = Color3.fromRGB(100, 100, 100),
-			ToggleEnabledStroke = Color3.fromRGB(0, 170, 255),
-			ToggleDisabledStroke = Color3.fromRGB(125, 125, 125),
-			ToggleEnabledOuterStroke = Color3.fromRGB(100, 100, 100),
-			ToggleDisabledOuterStroke = Color3.fromRGB(65, 65, 65),
+			ToggleBackground = Color3.fromRGB(18, 18, 18),
+			ToggleEnabled = Color3.fromRGB(235, 235, 235),
+			ToggleDisabled = Color3.fromRGB(90, 90, 90),
+			ToggleEnabledStroke = Color3.fromRGB(255, 255, 255),
+			ToggleDisabledStroke = Color3.fromRGB(120, 120, 120),
+			ToggleEnabledOuterStroke = Color3.fromRGB(160, 160, 160),
+			ToggleDisabledOuterStroke = Color3.fromRGB(55, 55, 55),
 
-			DropdownSelected = Color3.fromRGB(40, 40, 40),
-			DropdownUnselected = Color3.fromRGB(30, 30, 30),
+			DropdownSelected = Color3.fromRGB(27, 27, 27),
+			DropdownUnselected = Color3.fromRGB(18, 18, 18),
 
-			InputBackground = Color3.fromRGB(30, 30, 30),
-			InputStroke = Color3.fromRGB(65, 65, 65),
-			PlaceholderColor = Color3.fromRGB(178, 178, 178)
+			InputBackground = Color3.fromRGB(15, 15, 15),
+			InputStroke = Color3.fromRGB(48, 48, 48),
+			PlaceholderColor = Color3.fromRGB(145, 145, 145)
 		},
 
 		Ocean = {
@@ -723,13 +731,13 @@ local RayfieldLibrary = {
 
 -- Interface Management
 
-local RayfieldAssetId = customAssetId or 10804731440
-local Rayfield = useStudio and script.Parent:FindFirstChild('Rayfield') or game:GetObjects("rbxassetid://"..RayfieldAssetId)[1]
+local BananiUIAssetId = customAssetId or 10804731440
+local Rayfield = useStudio and script.Parent:FindFirstChild('BananiUI') or game:GetObjects("rbxassetid://"..BananiUIAssetId)[1]
 local buildAttempts = 0
 local correctBuild = false
 local warned
 local globalLoaded
-local rayfieldDestroyed = false -- True when RayfieldLibrary:Destroy() is called
+local rayfieldDestroyed = false -- True when BananiUI:Destroy() is called
 
 repeat
 	if Rayfield:FindFirstChild('Build') and Rayfield.Build.Value == InterfaceBuild then
@@ -746,7 +754,7 @@ repeat
 	end
 
 	local toDestroy
-	toDestroy, Rayfield = Rayfield, useStudio and script.Parent:FindFirstChild('Rayfield') or game:GetObjects("rbxassetid://"..RayfieldAssetId)[1]
+	toDestroy, Rayfield = Rayfield, useStudio and script.Parent:FindFirstChild('BananiUI') or game:GetObjects("rbxassetid://"..BananiUIAssetId)[1]
 	if toDestroy and not useStudio then toDestroy:Destroy() end
 
 	buildAttempts = buildAttempts + 1
@@ -769,14 +777,14 @@ if gethui then
 	for _, Interface in ipairs(gethui():GetChildren()) do
 		if Interface.Name == Rayfield.Name and Interface ~= Rayfield then
 			Interface.Enabled = false
-			Interface.Name = "Rayfield-Old"
+			Interface.Name = "BananiUI-Old"
 		end
 	end
 elseif not useStudio then
 	for _, Interface in ipairs(CoreGui:GetChildren()) do
 		if Interface.Name == Rayfield.Name and Interface ~= Rayfield then
 			Interface.Enabled = false
-			Interface.Name = "Rayfield-Old"
+			Interface.Name = "BananiUI-Old"
 		end
 	end
 end
@@ -786,7 +794,7 @@ if secureMode and not customAssetId then
 end
 
 do
-	local AssetPath = RayfieldFolder.."/Assets"
+	local AssetPath = BananiUIFolder.."/Assets"
 	local AssetBaseURL = "https://github.com/SiriusSoftwareLtd/Rayfield/blob/main/assets/"
 
 	local assetFiles = {
@@ -819,7 +827,7 @@ do
 
 	if hasCustomAsset and hasFilesystem then
 		local ok, err = pcall(function()
-			ensureFolder(RayfieldFolder)
+			ensureFolder(BananiUIFolder)
 			ensureFolder(AssetPath)
 
 			-- skip ids we've already tried so a dead asset can't loop the loader forever
@@ -866,10 +874,10 @@ do
 
 		if not ok then
 			warn("BananiUI | Failed to load custom assets: "..tostring(err))
-			secureNotify("asset_load_fail", "Rayfield", "Failed to load custom assets. UI images may not display correctly.")
+			secureNotify("asset_load_fail", "BananiUI", "Failed to load custom assets. UI images may not display correctly.")
 		end
 	else
-		secureNotify("no_getcustomasset", "Rayfield", "Your executor does not support getcustomasset. Some UI images may not render correctly.")
+		secureNotify("no_getcustomasset", "BananiUI", "Your executor does not support getcustomasset. Some UI images may not render correctly.")
 	end
 
 
@@ -943,11 +951,11 @@ local searchOpen = false
 local Notifications = Rayfield.Notifications
 local keybindConnections = {} -- For storing keybind connections to disconnect when Rayfield is destroyed
 
-local SelectedTheme = RayfieldLibrary.Theme.Default
+local SelectedTheme = BananiUI.Theme.Default
 
 local function ChangeTheme(Theme)
 	if typeof(Theme) == 'string' then
-		SelectedTheme = RayfieldLibrary.Theme[Theme]
+		SelectedTheme = BananiUI.Theme[Theme]
 	elseif typeof(Theme) == 'table' then
 		SelectedTheme = Theme
 	end
@@ -1151,7 +1159,7 @@ local function LoadConfiguration(Configuration)
 	if not success then warn('BananiUI had an issue decoding the configuration file, please try delete the file and reopen Rayfield.') return end
 
 	-- Iterate through current UI elements' flags
-	for FlagName, Flag in pairs(RayfieldLibrary.Flags) do
+	for FlagName, Flag in pairs(BananiUI.Flags) do
 		local FlagValue = Data[FlagName]
 
 		if (typeof(FlagValue) == 'boolean' and FlagValue == false) or FlagValue then
@@ -1169,7 +1177,7 @@ local function LoadConfiguration(Configuration)
 		else
 			warn("BananiUI | Unable to find '"..FlagName.. "' in the save file.")
 			print("The error above may not be an issue if new elements have been added or not been set values.")
-			--RayfieldLibrary:Notify({Title = "Rayfield Flags", Content = "Rayfield was unable to find '"..FlagName.. "' in the save file. Check sirius.menu/discord for help.", Image = 3944688398})
+			--BananiUI:Notify({Title = "Rayfield Flags", Content = "Rayfield was unable to find '"..FlagName.. "' in the save file. Check sirius.menu/discord for help.", Image = 3944688398})
 		end
 	end
 
@@ -1184,7 +1192,7 @@ local function SaveConfiguration()
 	end
 
 	local Data = {}
-	for i, v in pairs(RayfieldLibrary.Flags) do
+	for i, v in pairs(BananiUI.Flags) do
 		if v.Type == "ColorPicker" then
 			Data[i] = PackColor(v.Color)
 		else
@@ -1221,10 +1229,10 @@ local function SaveConfiguration()
 	end
 
 
-	callSafely(writefile, ConfigurationFolder .. "/" .. CFileName .. ConfigurationExtension, tostring(HttpService:JSONEncode(Data)))
+	callSafely(writefile, BananiConfigurationFolder .. "/" .. CFileName .. ConfigurationExtension, tostring(HttpService:JSONEncode(Data)))
 end
 
-function RayfieldLibrary:Notify(data) -- action e.g open messages
+function BananiUI:Notify(data) -- action e.g open messages
 	task.spawn(function()
 
 		-- Notification Object Creation
@@ -1317,39 +1325,39 @@ function RayfieldLibrary:Notify(data) -- action e.g open messages
 end
 
 
-function RayfieldLibrary:NotifySuccess(content, title)
+function BananiUI:NotifySuccess(content, title)
     self:Notify({
-        Title = title or "Success",
+        Title = title or "🍌 BANANIHUB 🍌",
         Content = tostring(content or "Completed successfully."),
         Duration = 4
     })
 end
 
-function RayfieldLibrary:NotifyError(content, title)
+function BananiUI:NotifyError(content, title)
     self:Notify({
-        Title = title or "BananiUI Error",
-        Content = tostring(content or "An unknown error occurred."),
+        Title = title or "🍌 BANANIHUB Error 🍌",
+        Content = tostring(content or "This action could not be completed."),
         Duration = 7
     })
 end
 
-function RayfieldLibrary:NotifyWarning(content, title)
+function BananiUI:NotifyWarning(content, title)
     self:Notify({
-        Title = title or "Warning",
+        Title = title or "🍌 BANANIHUB Warning 🍌",
         Content = tostring(content or "Please check this action."),
         Duration = 6
     })
 end
 
-function RayfieldLibrary:NotifyInfo(content, title)
+function BananiUI:NotifyInfo(content, title)
     self:Notify({
-        Title = title or "Information",
+        Title = title or "🍌 BANANIHUB Info 🍌",
         Content = tostring(content or ""),
         Duration = 5
     })
 end
 
-function RayfieldLibrary:SafeCall(label, callback, ...)
+function BananiUI:SafeCall(label, callback, ...)
     assert(type(callback) == "function", "SafeCall callback must be a function")
 
     local args = table.pack(...)
@@ -1372,6 +1380,27 @@ function RayfieldLibrary:SafeCall(label, callback, ...)
 
     return true, result
 end
+
+function BananiUI:ActionFailed(actionName, reason)
+    local action = tostring(actionName or "Action")
+    local message = tostring(reason or "This action could not be completed.")
+
+    self:Notify({
+        Title = "🍌 BANANIHUB Error 🍌",
+        Content = action .. " failed\n" .. message,
+        Duration = 7
+    })
+end
+
+function BananiUI:Require(condition, actionName, reason)
+    if condition then
+        return true
+    end
+
+    self:ActionFailed(actionName, reason)
+    return false
+end
+
 
 local function openSearch()
 	searchOpen = true
@@ -1509,9 +1538,9 @@ local function Hide(notify: boolean?)
 	Debounce = true
 	if notify then
 		if useMobilePrompt then 
-			RayfieldLibrary:Notify({Title = "Interface Hidden", Content = "The interface has been hidden, you can unhide the interface by tapping 'Show'.", Duration = 7, Image = 4400697855})
+			BananiUI:Notify({Title = "Interface Hidden", Content = "The interface has been hidden, you can unhide the interface by tapping 'Show'.", Duration = 7, Image = 4400697855})
 		else
-			RayfieldLibrary:Notify({Title = "Interface Hidden", Content = "The interface has been hidden, you can unhide the interface by tapping " .. tostring(getSetting("General", "rayfieldOpen")) .. ".", Duration = 7, Image = 4400697855})
+			BananiUI:Notify({Title = "Interface Hidden", Content = "The interface has been hidden, you can unhide the interface by tapping " .. tostring(getSetting("General", "rayfieldOpen")) .. ".", Duration = 7, Image = 4400697855})
 		end
 	end
 
@@ -1671,7 +1700,7 @@ local function saveSettings() -- Save settings to config file
 				script.Parent['get.val'].Value = encoded
 			end
 		end
-		callSafely(writefile, RayfieldFolder..'/settings'..ConfigurationExtension, encoded)
+		callSafely(writefile, BananiUIFolder..'/settings'..ConfigurationExtension, encoded)
 	end
 end
 
@@ -1762,7 +1791,7 @@ local function fadeOutKeyUI(KeyMain)
 	TweenService:Create(KeyMain.Hide, TweenInfo.new(0.4, Enum.EasingStyle.Exponential), {ImageTransparency = 1}):Play()
 end
 
-function RayfieldLibrary:CreateWindow(Settings)
+function BananiUI:CreateWindow(Settings)
 	-- BANANIHUB: skip Rayfield's startup splash.
 	Rayfield.Enabled = true
 
@@ -1775,7 +1804,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 	if not correctBuild and not Settings.DisableBuildWarnings then
 		task.delay(3, 
 			function() 
-				RayfieldLibrary:Notify({Title = 'Build Mismatch', Content = 'BananiUI may encounter issues as you are running an incompatible interface version ('.. ((Rayfield:FindFirstChild('Build') and Rayfield.Build.Value) or 'No Build') ..').\n\nThis version of Rayfield is intended for interface build '..InterfaceBuild..'.\n\nTry rejoining and then run the script twice.', Image = 4335487866, Duration = 15})		
+				BananiUI:Notify({Title = 'Build Mismatch', Content = 'BananiUI may encounter issues as you are running an incompatible interface version ('.. ((Rayfield:FindFirstChild('Build') and Rayfield.Build.Value) or 'No Build') ..').\n\nThis version of Rayfield is intended for interface build '..InterfaceBuild..'.\n\nTry rejoining and then run the script twice.', Image = 4335487866, Duration = 15})		
 			end)
 	end
 
@@ -1795,7 +1824,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 		end
 	end
 
-	ensureFolder(RayfieldFolder)
+	ensureFolder(BananiUIFolder)
 
 	local Passthrough = false
 	Topbar.Title.Text = Settings.Name
@@ -1814,7 +1843,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 	end
 
 	LoadingFrame.Version.TextTransparency = 1
-	LoadingFrame.Title.Text = Settings.LoadingTitle or "Rayfield"
+	LoadingFrame.Title.Text = Settings.LoadingTitle or "BananiUI"
 	LoadingFrame.Subtitle.Text = Settings.LoadingSubtitle or "Interface Suite"
 
 	if Settings.LoadingTitle ~= "BananiUI" then
@@ -1864,7 +1893,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 			while not rayfieldDestroyed do
 				task.wait(math.random(180, 600))
 				if rayfieldDestroyed then break end
-				RayfieldLibrary:Notify({
+				BananiUI:Notify({
 					Title = "Rayfield Interface",
 					Content = "Enjoying this UI library? Find it at sirius.menu/discord",
 					Duration = 7,
@@ -1884,11 +1913,11 @@ function RayfieldLibrary:CreateWindow(Settings)
 		end
 
 		CFileName = Settings.ConfigurationSaving.FileName
-		ConfigurationFolder = Settings.ConfigurationSaving.FolderName or ConfigurationFolder
+		BananiConfigurationFolder = Settings.ConfigurationSaving.FolderName or BananiConfigurationFolder
 		CEnabled = Settings.ConfigurationSaving.Enabled
 
 		if Settings.ConfigurationSaving.Enabled then
-			ensureFolder(ConfigurationFolder)
+			ensureFolder(BananiConfigurationFolder)
 		end
 	end)
 
@@ -1906,9 +1935,9 @@ function RayfieldLibrary:CreateWindow(Settings)
 	end
 
 	if Settings.Discord and Settings.Discord.Enabled and not useStudio and not secureMode then
-		ensureFolder(RayfieldFolder.."/Discord Invites")
+		ensureFolder(BananiUIFolder.."/Discord Invites")
 
-		if not callSafely(isfile, RayfieldFolder.."/Discord Invites".."/"..Settings.Discord.Invite..ConfigurationExtension) then
+		if not callSafely(isfile, BananiUIFolder.."/Discord Invites".."/"..Settings.Discord.Invite..ConfigurationExtension) then
 			if requestFunc then
 				pcall(function()
 					requestFunc({
@@ -1928,7 +1957,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 			end
 
 			if Settings.Discord.RememberJoins then -- We do logic this way so if the developer changes this setting, the user still won't be prompted, only new users
-				callSafely(writefile, RayfieldFolder.."/Discord Invites".."/"..Settings.Discord.Invite..ConfigurationExtension,"Rayfield RememberJoins is true for this invite, this invite will not ask you to join again")
+				callSafely(writefile, BananiUIFolder.."/Discord Invites".."/"..Settings.Discord.Invite..ConfigurationExtension,"Rayfield RememberJoins is true for this invite, this invite will not ask you to join again")
 			end
 		end
 	end
@@ -1939,7 +1968,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 			return
 		end
 
-		ensureFolder(RayfieldFolder.."/Key System")
+		ensureFolder(BananiUIFolder.."/Key System")
 
 		if typeof(Settings.KeySettings.Key) == "string" then Settings.KeySettings.Key = {Settings.KeySettings.Key} end
 
@@ -1960,9 +1989,9 @@ function RayfieldLibrary:CreateWindow(Settings)
 			Settings.KeySettings.FileName = "No file name specified"
 		end
 
-		if callSafely(isfile, RayfieldFolder.."/Key System".."/"..Settings.KeySettings.FileName..ConfigurationExtension) then
+		if callSafely(isfile, BananiUIFolder.."/Key System".."/"..Settings.KeySettings.FileName..ConfigurationExtension) then
 			for _, MKey in ipairs(Settings.KeySettings.Key) do
-				local savedKeys = callSafely(readfile, RayfieldFolder.."/Key System".."/"..Settings.KeySettings.FileName..ConfigurationExtension)
+				local savedKeys = callSafely(readfile, BananiUIFolder.."/Key System".."/"..Settings.KeySettings.FileName..ConfigurationExtension)
 				if savedKeys and string.find(savedKeys, MKey) then
 					Passthrough = true
 				end
@@ -1972,7 +2001,17 @@ function RayfieldLibrary:CreateWindow(Settings)
 		if not Passthrough and secureMode then
 			warn("BananiUI | Secure Mode: Key system requires a valid saved key. The key UI cannot be shown as it requires loading detectable assets.")
 			Rayfield.Enabled = false
-			return RayfieldLibrary
+			
+-- Example action validation:
+-- if not BananiUI:Require(targetPlayer ~= nil, "Spectate", "Select a player first.") then
+--     return
+-- end
+--
+-- if not BananiUI:Require(targetHumanoid ~= nil, "Spectate", "That player's character is unavailable.") then
+--     return
+-- end
+
+return BananiUI
 		end
 
 		if not Passthrough then
@@ -2068,8 +2107,8 @@ function RayfieldLibrary:CreateWindow(Settings)
 					Passthrough = true
 					KeyMain.Visible = false
 					if Settings.KeySettings.SaveKey then
-						callSafely(writefile, RayfieldFolder.."/Key System".."/"..Settings.KeySettings.FileName..ConfigurationExtension, FoundKey)
-						RayfieldLibrary:Notify({Title = "Key System", Content = "The key for this script has been saved successfully.", Image = 3605522284})
+						callSafely(writefile, BananiUIFolder.."/Key System".."/"..Settings.KeySettings.FileName..ConfigurationExtension, FoundKey)
+						BananiUI:Notify({Title = "Key System", Content = "The key for this script has been saved successfully.", Image = 3605522284})
 					end
 				else
 					if AttemptsRemaining == 0 then
@@ -2094,7 +2133,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 				fadeOutKeyUI(KeyMain)
 				task.wait(0.51)
 				Passthrough = true
-				RayfieldLibrary:Destroy()
+				BananiUI:Destroy()
 				KeyUI:Destroy()
 			end)
 		else
@@ -2263,7 +2302,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 
 			Button.Interact.MouseButton1Click:Connect(function()
 				local Success, Response = pcall(ButtonSettings.Callback)
-				-- Prevents animation from trying to play if the button's callback called RayfieldLibrary:Destroy()
+				-- Prevents animation from trying to play if the button's callback called BananiUI:Destroy()
 				if rayfieldDestroyed then
 					return
 				end
@@ -2370,7 +2409,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 					TweenService:Create(ColorPicker.HexInput, TweenInfo.new(0.5, Enum.EasingStyle.Exponential), {Position = UDim2.new(0, 17, 0, 73)}):Play()
 					TweenService:Create(ColorPicker.Interact, TweenInfo.new(0.6, Enum.EasingStyle.Exponential), {Size = UDim2.new(0.574, 0, 1, 0)}):Play()
 					TweenService:Create(Main.MainPoint, TweenInfo.new(0.2, Enum.EasingStyle.Exponential), {ImageTransparency = 0}):Play()
-					TweenService:Create(Main, TweenInfo.new(0.2, Enum.EasingStyle.Exponential), {ImageTransparency = SelectedTheme ~= RayfieldLibrary.Theme.Default and 0.25 or 0.1}):Play()
+					TweenService:Create(Main, TweenInfo.new(0.2, Enum.EasingStyle.Exponential), {ImageTransparency = SelectedTheme ~= BananiUI.Theme.Default and 0.25 or 0.1}):Play()
 					TweenService:Create(Background, TweenInfo.new(0.6, Enum.EasingStyle.Exponential), {BackgroundTransparency = 0}):Play()
 				else
 					opened = false
@@ -2539,7 +2578,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 
 			if Settings.ConfigurationSaving then
 				if Settings.ConfigurationSaving.Enabled and ColorPickerSettings.Flag then
-					RayfieldLibrary.Flags[ColorPickerSettings.Flag] = ColorPickerSettings
+					BananiUI.Flags[ColorPickerSettings.Flag] = ColorPickerSettings
 				end
 			end
 
@@ -2803,7 +2842,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 
 			if Settings.ConfigurationSaving then
 				if Settings.ConfigurationSaving.Enabled and InputSettings.Flag then
-					RayfieldLibrary.Flags[InputSettings.Flag] = InputSettings
+					BananiUI.Flags[InputSettings.Flag] = InputSettings
 				end
 			end
 
@@ -3145,7 +3184,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 
 			if Settings.ConfigurationSaving then
 				if Settings.ConfigurationSaving.Enabled and DropdownSettings.Flag then
-					RayfieldLibrary.Flags[DropdownSettings.Flag] = DropdownSettings
+					BananiUI.Flags[DropdownSettings.Flag] = DropdownSettings
 				end
 			end
 
@@ -3277,7 +3316,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 
 			if Settings.ConfigurationSaving then
 				if Settings.ConfigurationSaving.Enabled and KeybindSettings.Flag then
-					RayfieldLibrary.Flags[KeybindSettings.Flag] = KeybindSettings
+					BananiUI.Flags[KeybindSettings.Flag] = KeybindSettings
 				end
 			end
 
@@ -3304,7 +3343,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 			Toggle.Title.TextTransparency = 1
 			Toggle.Switch.BackgroundColor3 = SelectedTheme.ToggleBackground
 
-			if SelectedTheme ~= RayfieldLibrary.Theme.Default then
+			if SelectedTheme ~= BananiUI.Theme.Default then
 				Toggle.Switch.Shadow.Visible = false
 			end
 
@@ -3431,7 +3470,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 			if not ToggleSettings.Ext then
 				if Settings.ConfigurationSaving then
 					if Settings.ConfigurationSaving.Enabled and ToggleSettings.Flag then
-						RayfieldLibrary.Flags[ToggleSettings.Flag] = ToggleSettings
+						BananiUI.Flags[ToggleSettings.Flag] = ToggleSettings
 					end
 				end
 			end
@@ -3440,7 +3479,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 			Rayfield.Main:GetPropertyChangedSignal('BackgroundColor3'):Connect(function()
 				Toggle.Switch.BackgroundColor3 = SelectedTheme.ToggleBackground
 
-				if SelectedTheme ~= RayfieldLibrary.Theme.Default then
+				if SelectedTheme ~= BananiUI.Theme.Default then
 					Toggle.Switch.Shadow.Visible = false
 				end
 
@@ -3473,7 +3512,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 			Slider.UIStroke.Transparency = 1
 			Slider.Title.TextTransparency = 1
 
-			if SelectedTheme ~= RayfieldLibrary.Theme.Default then
+			if SelectedTheme ~= BananiUI.Theme.Default then
 				Slider.Main.Shadow.Visible = false
 			end
 
@@ -3614,12 +3653,12 @@ function RayfieldLibrary:CreateWindow(Settings)
 
 			if Settings.ConfigurationSaving then
 				if Settings.ConfigurationSaving.Enabled and SliderSettings.Flag then
-					RayfieldLibrary.Flags[SliderSettings.Flag] = SliderSettings
+					BananiUI.Flags[SliderSettings.Flag] = SliderSettings
 				end
 			end
 
 			Rayfield.Main:GetPropertyChangedSignal('BackgroundColor3'):Connect(function()
-				if SelectedTheme ~= RayfieldLibrary.Theme.Default then
+				if SelectedTheme ~= BananiUI.Theme.Default then
 					Slider.Main.Shadow.Visible = false
 				end
 
@@ -3681,9 +3720,9 @@ function RayfieldLibrary:CreateWindow(Settings)
 	function Window.ModifyTheme(NewTheme)
 		local success = pcall(ChangeTheme, NewTheme)
 		if not success then
-			RayfieldLibrary:Notify({Title = 'Unable to Change Theme', Content = 'We are unable find a theme on file.', Image = 4400704299})
+			BananiUI:Notify({Title = 'Unable to Change Theme', Content = 'We are unable find a theme on file.', Image = 4400704299})
 		else
-			RayfieldLibrary:Notify({Title = 'Theme Changed', Content = 'Successfully changed theme to '..(typeof(NewTheme) == 'string' and NewTheme or 'Custom Theme')..'.', Image = 4483362748})
+			BananiUI:Notify({Title = 'Theme Changed', Content = 'Successfully changed theme to '..(typeof(NewTheme) == 'string' and NewTheme or 'Custom Theme')..'.', Image = 4483362748})
 		end
 	end
 
@@ -3736,10 +3775,11 @@ function RayfieldLibrary:CreateWindow(Settings)
 
 
     task.defer(function()
-        RayfieldLibrary:NotifySuccess(
-            "Loaded script\nGame: " .. getCurrentGameName(),
-            Settings.Name or "BananiUI"
-        )
+        BananiUI:Notify({
+            Title = "🍌 BANANIHUB 🍌",
+            Content = "Loaded successfully\nGame: " .. getCurrentGameName(),
+            Duration = 6
+        })
     end)
 
 	return Window
@@ -3756,16 +3796,16 @@ local function setVisibility(visibility: boolean, notify: boolean?)
 	end
 end
 
-function RayfieldLibrary:SetVisibility(visibility: boolean)
+function BananiUI:SetVisibility(visibility: boolean)
 	setVisibility(visibility, false)
 end
 
-function RayfieldLibrary:IsVisible(): boolean
+function BananiUI:IsVisible(): boolean
 	return not Hidden
 end
 
 local hideHotkeyConnection -- Has to be initialized here since the connection is made later in the script
-function RayfieldLibrary:Destroy()
+function BananiUI:Destroy()
 	rayfieldDestroyed = true
 	if hideHotkeyConnection then
 		hideHotkeyConnection:Disconnect()
@@ -3903,7 +3943,7 @@ for _, TopbarButton in ipairs(Topbar:GetChildren()) do
 end
 
 
-function RayfieldLibrary:LoadConfiguration()
+function BananiUI:LoadConfiguration()
 	local config
 
 	if debugX then
@@ -3925,20 +3965,20 @@ function RayfieldLibrary:LoadConfiguration()
 			end
 
 			if isfile then 
-				if callSafely(isfile, ConfigurationFolder .. "/" .. CFileName .. ConfigurationExtension) then
-					loaded = LoadConfiguration(callSafely(readfile, ConfigurationFolder .. "/" .. CFileName .. ConfigurationExtension))
+				if callSafely(isfile, BananiConfigurationFolder .. "/" .. CFileName .. ConfigurationExtension) then
+					loaded = LoadConfiguration(callSafely(readfile, BananiConfigurationFolder .. "/" .. CFileName .. ConfigurationExtension))
 				end
 			else
 				notified = true
-				RayfieldLibrary:Notify({Title = "BananiUI Configurations", Content = "We couldn't enable Configuration Saving as you are not using software with filesystem support.", Image = 4384402990})
+				BananiUI:Notify({Title = "BananiUI Configurations", Content = "We couldn't enable Configuration Saving as you are not using software with filesystem support.", Image = 4384402990})
 			end
 		end)
 
 		if success and loaded and not notified then
-			RayfieldLibrary:Notify({Title = "BananiUI Configurations", Content = "The configuration file for this script has been loaded from a previous session.", Image = 4384403532})
+			BananiUI:Notify({Title = "BananiUI Configurations", Content = "The configuration file for this script has been loaded from a previous session.", Image = 4384403532})
 		elseif not success and not notified then
 			warn('BananiUI Configurations Error | '..tostring(result))
-			RayfieldLibrary:Notify({Title = "BananiUI Configurations", Content = "We've encountered an issue loading your configuration correctly.\n\nCheck the Developer Console for more information.", Image = 4384402990})
+			BananiUI:Notify({Title = "BananiUI Configurations", Content = "We've encountered an issue loading your configuration correctly.\n\nCheck the Developer Console for more information.", Image = 4384402990})
 		end
 	end
 
@@ -3952,7 +3992,7 @@ if useStudio then
 	-- Feel free to place your own script here to see how it'd work in Roblox Studio before running it on your execution software.
 
 
-	--local Window = RayfieldLibrary:CreateWindow({
+	--local Window = BananiUI:CreateWindow({
 	--	Name = "Rayfield Example Window",
 	--	LoadingTitle = "BananiUI",
 	--	Theme = 'Default',
@@ -4022,7 +4062,7 @@ if useStudio then
 	--})
 
 
-	----RayfieldLibrary:Notify({Title = "Rayfield Interface", Content = "Welcome to Rayfield. These - are the brand new notification design for Rayfield, with custom sizing and Rayfield calculated wait times.", Image = 4483362458})
+	----BananiUI:Notify({Title = "Rayfield Interface", Content = "Welcome to Rayfield. These - are the brand new notification design for Rayfield, with custom sizing and Rayfield calculated wait times.", Image = 4483362458})
 
 	--local Section = Tab:CreateSection("Section Example")
 
@@ -4080,7 +4120,7 @@ if useStudio then
 	--})
 
 	--local thoptions = {}
-	--for themename, theme in pairs(RayfieldLibrary.Theme) do
+	--for themename, theme in pairs(BananiUI.Theme) do
 	--	table.insert(thoptions, themename)
 	--end
 
@@ -4174,7 +4214,7 @@ end
 --end
 
 task.delay(4, function()
-	RayfieldLibrary.LoadConfiguration()
+	BananiUI.LoadConfiguration()
 	if Main:FindFirstChild('Notice') and Main.Notice.Visible then
 		TweenService:Create(Main.Notice, TweenInfo.new(0.5, Enum.EasingStyle.Exponential, Enum.EasingDirection.InOut), {Size = UDim2.new(0, 100, 0, 25), Position = UDim2.new(0.5, 0, 0, -100), BackgroundTransparency = 1}):Play()
 		TweenService:Create(Main.Notice.Title, TweenInfo.new(0.3, Enum.EasingStyle.Exponential), {TextTransparency = 1}):Play()
@@ -4184,4 +4224,4 @@ task.delay(4, function()
 	end
 end)
 
-return RayfieldLibrary
+return BananiUI
