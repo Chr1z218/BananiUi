@@ -36,7 +36,7 @@ end)
 local BANANIHUB_VERSION = "1.1.0"
 local UIToggleKey = Enum.KeyCode.L
 local BANANIHUB_VERSION_URL =
-    "https://raw.githubusercontent.com/Chr1z218/Rayfield/refs/heads/main/bananihub-version.txt"
+    "https://raw.githubusercontent.com/Chr1z218/BananiUi/refs/heads/main/BananiHub_New.lua"
 
 --==============================================================
 -- RAYFIELD
